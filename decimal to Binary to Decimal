@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+int n;
+cin>>n;
+string s="";
+while(n>0)
+{
+	int k=n%2;
+	char dd=k+'0';
+	s=(dd)+s;
+	n=n/2;
+}
+cout<<s<<endl;
+int c=0;
+int num=0;
+for(int i=s.length()-1;i>=0;i--)
+{
+	if((s[i]-48)==1)
+	{
+	num=num+pow(2,c);		
+	}
+c++;
+}
+cout<<num<<endl;
+}
