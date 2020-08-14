@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n;
+	cin>>n;
+	int a[n];
+	int ci=0,cd=0;
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	for(int i=1;i<n;i++)
+	{
+	if(a[i]>a[i-1])
+		{
+			ci++;
+		}
+		else if(a[i]<a[i-1])
+		{
+			cd++;
+		}
+		else
+		{
+			if(cd>ci)
+			{
+				cd++;
+			}
+			else
+			{
+				ci++;
+			}
+		}
+	}
+	if((ci==n-1&&cd==0))
+	{
+		cout<<true<<endl;
+	}
+	else if(ci==0&&cd==n-1)
+	{
+		cout<<true<<endl;
+	}
+	else
+	{
+		cout<<false<<endl;
+	}	
+}
