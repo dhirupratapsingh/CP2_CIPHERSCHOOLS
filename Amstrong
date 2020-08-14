@@ -1,0 +1,32 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n;
+	cin>>n;
+	int z=n;
+	int l=n;
+	int len=0;
+	int sum=0;
+	while(l>0)
+	{
+		int k=l%10;
+		len++;
+		l=l/10;
+	}
+	while(z>0)
+	{
+		int k=z%10;
+		sum+=(int)pow(k,len);
+		z=z/10;
+	}
+	if(sum==n)
+	{
+		cout<<"Yes"<<endl;
+	}
+	else
+	{
+		cout<<"No"<<endl;
+	}
+}
