@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool abc(int a[],int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		if(a[i]>n-1)
+		{
+			return false;
+		}
+		if(a[a[i]]!=i)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+int main()
+{
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	bool ans=true;
+	bool an=abc(a,n);
+if(ans==an)
+{
+	cout<<true<<endl;
+}
+else
+{
+	cout<<false<<endl;
+}
+}
