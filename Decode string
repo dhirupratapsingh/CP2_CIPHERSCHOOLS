@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+void decs(string s,int len,string out)
+{
+	if(len==s.length())
+	{
+		cout<<out<<endl;
+		return;
+	}
+	char c=s[len]-48+64;
+	decs(s,len+1,out+c);
+	if(len+2<=s.length())
+	{
+	int i=s[len]-48;
+	int i2=s[len+1]-48;
+	int i3=i*10+i2;
+	char c2=i3+64;
+decs(s,len+2,out+c2);		
+	}
+
+}
+int main()
+{
+	string s;
+	cin>>s;
+	string out="";
+	decs(s,0,out);
+}
