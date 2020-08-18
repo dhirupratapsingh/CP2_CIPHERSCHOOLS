@@ -1,0 +1,38 @@
+class Solution {
+public:
+    unordered_map<char,string> m;
+    vector<string> ans;
+    void generateAns(string d,string s,int cnt)
+    {
+        if(cnt==d.length()-1)
+        {
+            string letter=m[d[cnt]];
+            int n=letter.length();
+            for(int i=0;i<n;i++)
+            {
+                ans.push_back(s+letter[i]);
+            }
+            return ;
+        }
+        int x=d[cnt];
+        string letter=m[x];
+        int n=letter.length();
+        for(int i=0;i<n;i++)
+        {
+            generateAns(d,s+letter[i],cnt+1);
+        }
+    }
+    vector<string> letterCombinations(string d) {
+        //return {};
+        m['2']="abc";
+        m['3']="def";
+        m['4']="ghi";
+        m['5']="jkl";
+        m['6']="mno";
+        m['7']="pqrs";
+        m['8']="tuv";
+        m['9']="wxyz";
+        generateAns(d,"",0);
+        return ans;
+    }
+};
