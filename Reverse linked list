@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+	struct node *next;
+	int data;
+};
+//For function call
+struct node* rev(struct node *head)
+{
+
+	struct node *r=NULL;
+	while(head!=NULL)
+	{
+		struct node* temp=head;
+		head=head->next;
+		temp->next=r;
+		r=temp;
+
+	}
+	return r;
+}
+//For recursion
+struct node* rec(struct node *head,struct node*r)
+{
+
+	if(head==NULL)
+	{
+		return r;
+	}
+		struct node* temp=head;
+		head=head->next;
+		temp->next=r;
+		r=temp;
+		rec(head,r);
+}
+int main()
+{
+int n;
+cin>>n;
+struct node *head=NULL;
+struct node *p=NULL;
+for(int i=0;i<n;i++)
+{
+	struct node *ne=(struct node*)malloc(sizeof(struct node));	
+ne->next=NULL;
+	cin>>ne->data;
+	if(head==NULL)
+	{
+		head=ne;
+		p=ne;
+	}
+	p->next=ne;	
+	p=ne;
+}
+//
+struct node *head2=rev(head);
+struct node*ptr=head2;
+while(head2!=NULL)
+{
+	cout<<head2->data<<" ";
+	head2=head2->next;
+}
+cout<<endl;
+//
+//
+	struct node *r=NULL;
+struct node*head3=rec(ptr,r);
+while(head3!=NULL)
+{
+	cout<<head3->data<<" ";
+	head3=head3->next;
+}
+}
