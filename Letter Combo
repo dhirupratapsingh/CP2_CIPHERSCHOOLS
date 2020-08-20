@@ -1,0 +1,46 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        map<char, string> numMap = {
+            {'2', "abc"},
+            {'3', "def"},
+            {'4', "ghi"},
+            {'5', "jkl"},
+            {'6', "mno"},
+            {'7', "pqrs"},
+            {'8', "tuv"},
+            {'9', "wxyz"}
+        };
+        
+        vector<string> vec;
+        int seq = 0;
+        int comb = 1;
+
+        for (char c : digits) {
+            comb *= numMap.find(c)->second.length();
+        }
+
+        reverse(digits.begin(), digits.end());
+
+        for (int i = 0; i < digits.length(); i++) {
+            int count = 0;
+            seq = i == 0 ? 1 : seq * (numMap.find(digits[i - 1])->second.length());
+            while (count < comb) {
+                for (char c : numMap.find(digits[i])->second) {
+                    for (int y = 0; y < seq; y++) {
+                        if (vec.size() < comb) {
+                            string str(1, c);
+                            vec.push_back(str);
+                        }
+                        else {
+                            vec[count] = c + vec[count];
+                        }
+                        count++;
+                    }
+                }
+            }
+        }
+        
+        return vec;
+    }
+};
