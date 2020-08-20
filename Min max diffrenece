@@ -1,0 +1,65 @@
+// C++ implementation to find the 
+// minimum of the maximum difference 
+// of the adjacent elements after 
+// removing K elements from the array 
+
+#include <bits/stdc++.h> 
+
+using namespace std; 
+
+// Function to find the minimum 
+// of the maximum difference of the 
+// adjacent elements after removing 
+// K elements from the array 
+int minimumAdjacentDifference(int a[], 
+						int n, int k) 
+{ 
+	// Intialising the 
+	// minimum difference 
+	int minDiff = INT_MAX; 
+
+	// Traversing over subsets 
+	// in iterative manner 
+	for (int i = 0; i < (1 << n); i++) { 
+		
+		// Number of elements to 
+		// be taken in the subset 
+		// ON bits of i represent 
+		// elements not to be removed 
+		int cnt = __builtin_popcount(i); 
+
+		// If the removed 
+		// set is of size k 
+		if (cnt == n - k) { 
+			
+			// Creating the new array 
+			// after removing elements 
+			vector<int> temp; 
+			for (int j = 0; j < n; j++) { 
+				if ((i & (1 << j)) != 0) 
+					temp.push_back(a[j]); 
+			} 
+			// Maximum difference of adjacent 
+			// elements of remaining array 
+			int maxDiff = INT_MIN; 
+			for (int j = 0; j < temp.size() - 1; j++) { 
+				maxDiff = max(maxDiff, 
+				temp[j + 1] - temp[j]); 
+			} 
+			minDiff = min(minDiff, maxDiff); 
+		} 
+	} 
+	return minDiff; 
+} 
+
+// Driver Code 
+int main() 
+{ 
+	int n = 5; 
+	int k = 2; 
+
+	int a[n] = { 3, 7, 8, 10, 14 }; 
+
+	cout << minimumAdjacentDifference(a, n, k); 
+	return 0; 
+} 
