@@ -1,0 +1,48 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& v) {
+        string ans="";
+            string pat="";
+if(v.size()==0)
+{
+    return ans;
+}
+        else if(v.size()==1)
+        {
+            return v[0];
+        }
+else
+{
+    int f=INT_MAX;
+    int pos;
+
+    for(int i=0;i<v.size();i++)
+    {
+        if(v[i]=="")
+        {
+            return v[i];
+        }
+        if(v[i].length()<=f)
+        {
+         pos=i;
+            f=v[i].length();
+        }
+    }
+    pat=v[pos];
+    for(int i=0;i<v.size();i++)
+    {
+        string as="";
+        for(int j=0;j<pat.length();j++)
+        {
+          if(pat[j]==v[i][j])
+          {
+              as+=pat[j];
+          }
+        }
+        pat=as;
+    }
+   
+}
+         return pat;
+    }
+};
