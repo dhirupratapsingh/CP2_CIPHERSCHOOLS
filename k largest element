@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int Countgreater(vector<int>&v,int k){
+        int count=0;
+        for(int i=0;i<v.size();i++){
+            if(v[i]>k){
+                count++;
+            }
+        }
+        return count;
+    }
+    int findKthLargest(vector<int>& nums, int k){
+        
+        int low=INT_MAX;
+        int high=INT_MIN;
+        int n=nums.size();
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++){
+            low=min(low,nums[i]);
+            high=max(high,nums[i]);
+            mp[nums[i]]++;
+        }
+        
+        while(low<=high){
+            
+            int mid=(low+high)/2;
+           int greater = Countgreater(nums,mid);
+            if(greater<k&&greater+mp[mid]>=k){
+                return mid;
+            }else if(greater>=k){
+                low=mid+1; 
+                
+            }else{
+                high=mid-1;     
+            }
+        }
+        return -1;
+    }
+};
