@@ -1,0 +1,32 @@
+class Solution {
+public:
+bool isPalindrome(ListNode* head) {
+int c=0;
+ListNode *p=head;
+//count for number of elements in linklist
+while(p!=NULL){
+c++;
+p=p->next;
+}
+if(c==1)return true;
+
+p=head;
+stacks;
+int k=c/2,m=0;
+while(p!=NULL){m++;
+if(m<=k){
+s.push(p->val);
+}
+else {
+if(c & 1){
+if(m==k+1)p=p->next;
+}
+
+        if(p->val!=s.top())return false;
+        s.pop();
+    }
+     p=p->next;
+ }
+ return true;
+}
+};
