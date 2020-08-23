@@ -1,0 +1,21 @@
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) 
+    {
+        int cont=0;
+        if(head==NULL||head->next==NULL)return head;
+        ListNode* new_start=head->next;
+        ListNode* pp=head;
+        while(pp)
+        {cont++;
+            ListNode* qq=pp->next;
+            if(qq==NULL){pp->next=new_start;break;}
+            else if(cont%2!=0&&qq&&qq->next==NULL){pp->next=new_start;break;}
+            else pp->next=qq->next;
+            pp=qq;
+        }
+        return head;
+        
+        
+    }
+};
