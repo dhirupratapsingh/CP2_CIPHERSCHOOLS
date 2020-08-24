@@ -1,0 +1,20 @@
+void rightSideViewUtil(TreeNode* root,vector<int>& ans,int level,int *maxlvl) {
+        if(root==NULL) return ;
+        if(level>*maxlvl){
+        ans.push_back(root->val);
+            *maxlvl=level;
+        }
+        
+            rightSideViewUtil(root->right,ans,level+1,maxlvl);
+        
+            rightSideViewUtil(root->left,ans,level+1,maxlvl);
+        
+       
+    }
+     vector<int> rightSideView(TreeNode* root)
+     {
+         vector<int> ans;
+         int maxlvl=0;
+         rightSideViewUtil(root,ans,1,&maxlvl);
+         return ans;
+     }
