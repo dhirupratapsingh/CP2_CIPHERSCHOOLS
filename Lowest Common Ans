@@ -1,0 +1,20 @@
+ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
+    {
+        if(p->val>q->val)//ensuring that p has smaller value than q.
+        {
+            TreeNode* temp;
+            temp=p;
+            p=q;
+            q=temp;
+        }
+        while(root!=NULL)
+        {
+            if((p->val<root->val && q->val>root->val) || (p->val==root->val || q->val==root->val))
+                return root;
+            else if(p->val<root->val && q->val<root->val)
+                root=root->left;
+            else
+                root=root->right;
+        }
+        return root;
+    }
