@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        map<int, vector<int>> m;
+        solve(root, 0, m);
+        
+        for(auto p:m){
+            if(p.first & 1){
+                reverse(p.second.begin(), p.second.end()); 
+                ans.push_back(p.second);
+            }
+            else ans.push_back(p.second);
+        }     
+        return ans;
+        
+    }
+    
+    void solve(TreeNode* root, int l, map<int, vector<int>> &m){
+        if(root == NULL) return; 
+        m[l].push_back(root->val);
+        
+        solve(root->left, l+1, m);
+        solve(root->right, l+1, m);
+     
+        
+        
+    }
+};
