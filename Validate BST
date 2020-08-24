@@ -1,0 +1,26 @@
+void inorder(TreeNode* root,stack <int> &s)
+    {
+        if(root==NULL)
+            return;
+        inorder(root->left,s);
+        s.push(root->val);
+        inorder(root->right,s);
+    }
+    bool isValidBST(TreeNode* root) 
+    {
+        int x;
+        stack <int> s;
+        inorder(root,s);
+        if(s.empty())
+            return 1;
+        x=s.top();
+        s.pop();
+        while(!s.empty())
+        {
+            if(s.top()>=x)
+                return 0;
+            x=s.top();
+            s.pop();
+        }
+        return 1;
+    }
