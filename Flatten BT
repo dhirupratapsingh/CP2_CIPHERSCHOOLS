@@ -1,0 +1,22 @@
+ void preorder(TreeNode* root,vector <TreeNode*> &v)
+    {
+        if(root==NULL)
+            return;
+        v.push_back(root);
+        preorder(root->left,v);
+        preorder(root->right,v);
+    }
+    void flatten(TreeNode* root) 
+    {
+        if(root==NULL)
+            return;
+        vector <TreeNode*> v;
+        preorder(root,v);
+        int i;
+        for(i=0;i<v.size()-1;i++)
+        {
+          v[i]->left=NULL;
+            v[i]->right=v[i+1];
+        }
+        v.clear();
+    }
