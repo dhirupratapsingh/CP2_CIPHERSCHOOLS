@@ -1,0 +1,17 @@
+class Solution {
+public:
+    unordered_map<int,unordered_map<int,int>> dp;
+    int solve(vector<int> &nums, int i, int cur, int target)
+    {
+        if(i==nums.size())
+            return cur==target?1:0;
+        if(dp[i].count(cur))
+            return dp[i][cur];
+        return dp[i][cur]=solve(nums,i+1,cur+nums[i],target) + solve(nums,i+1,cur-nums[i],target);
+    }
+    
+    
+    int findTargetSumWays(vector<int>& nums, int S) {
+        return solve(nums,0,0,S);
+    }
+};
