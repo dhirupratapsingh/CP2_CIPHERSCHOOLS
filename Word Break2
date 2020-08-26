@@ -1,0 +1,27 @@
+class Solution {
+public:
+    unordered_map<string,vector<string>> vis;
+    vector<string> merge(string s, vector<string> vec){
+        vector<string> ret;
+        for(string i:vec) ret.push_back(s+" "+i);
+        return ret;
+    }
+    vector<string> dfs(string s, unordered_set<string>& wordDict){
+        vector<string> res;
+        if(vis.count(s)) return vis[s];
+        if(wordDict.count(s)) res.push_back(s);
+        for(int i=1;i<=s.size();++i){
+            string cur = s.substr(0,i);
+            if(wordDict.count(cur)){
+                vector<string> vec = merge(cur,dfs(s.substr(i),wordDict));
+                res.insert(res.end(),vec.begin(),vec.end());
+            }
+        }
+        vis[s] = res;
+        return res;
+    }
+    vector<string> wordBreak(string s, vector<string>& wordDic) {
+        unordered_set<string> wordDict(wordDic.begin(),wordDic.end());
+        return dfs(s,wordDict);
+    }
+};
